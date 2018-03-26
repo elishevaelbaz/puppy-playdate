@@ -2,6 +2,8 @@ import axios from 'axios';
 import API from '../../utils/API';
 import React from "react";
 import MessagesList from "./Messages_List";
+import {ListGroup, ListGroupItem} from 'react-bootstrap';
+import './Chat.css';
 
 
 class Chat extends React.Component {
@@ -48,14 +50,13 @@ class Chat extends React.Component {
               user: response.data.user.local.username
             })
           }
-        })
-        
-        axios.get('/auth/signup').then(res => {
+
+          axios.get('/auth/signup').then(res => {
           console.log(res.data);
           const allDogs = res.data;
         
           //gives you the current user's data from the whole list
-          const currentUserData = allDogs.filter(dog => dog.local.username == this.state.user);
+          const currentUserData = allDogs.filter(dog => dog.local.username == response.data.user.local.username);
           console.log("current user data", currentUserData[0]);
           const messages = currentUserData[0].messages;
           messages.forEach(message => {
@@ -68,6 +69,10 @@ class Chat extends React.Component {
           console.log(`Get Messages: ${this.state.messages}`);
 
       })
+          
+        })
+        
+        
     }
 
   }
@@ -98,17 +103,25 @@ class Chat extends React.Component {
               <div className="card-body">
                 <div className="card-title"> Messages with {this.props.match} </div> 
                 <hr />
-                <div className="messages"> 
+                <ListGroup className="messages"> 
                   {
                     this.state.messages.map((message, i) => {
+                      if(message.author == this.state.user){
+                        return ( 
+                          <ListGroupItem className='list-group-item-info' style={{margin: '2% 0% 2% 45%'}} key={i}> 
+                            <div className='current-user'>{message.message}</div> 
+                          </ListGroupItem> 
+                        );
+                      } else {
                       return ( 
-                        <div key={i}> 
-                          {message.author}: {message.message} 
-                        </div> 
-                      );
+                        <ListGroupItem style={{margin: '2% 45% 2% 0%'}} key={i}> 
+                          <div className='other-person'>{message.message}</div> 
+                        </ListGroupItem> 
+                      )
+                    }
                     })
                   } 
-                </div>
+                </ListGroup>
               </div> 
               <div className="card-footer">
                 <input type="text" placeholder="Message" className="form-control" value={this.state.message} onChange={ev => this.setState({ message: ev.target.value })}/> 

@@ -35,6 +35,15 @@ body{
 	margin: 5%;
 	padding: 10px;
 	position: absolute;
+
+}
+
+.shadow{
+    /* inner shadow*/
+    /* box-shadow: inset 0 0 10px #000000; */
+    box-shadow: 3px 3px 5px;
+    margin-right: 2%;
+    margin-left: 2%
 }
 
 .LoginForm, .SignupForm{
@@ -68,7 +77,7 @@ li.nav-item{
 	text-align: center;
 	background-color: #6467ebbd;
 	color: white;
-	padding: 5px;
+	padding: 20px 0px;
 	margin: 0;
 }
 
@@ -116,15 +125,8 @@ span#nav-icons{
     border-color: #6467ebcc;
 }
 
-a:hover, a:focus, #nav-icons:hover, #nav-icons:focus, .navbar-inverse:hover, .navbar-inverse:focus, .navbar-brand:focus, .navbar-brand:hover {
+a:hover, a:focus, .navbar-inverse:hover, .navbar-inverse:focus, .navbar-brand:focus, .navbar-brand:hover {
     background-color: #6467ebcc;
-    border-color: #6467ebcc;
-    color: #6467ebcc;
-}
-
-.navbar-inverse .navbar-brand:hover,
-.navbar-inverse .navbar-brand:focus {
-background-color: #6467ebcc;
     border-color: #6467ebcc;
     color: #6467ebcc;
 }
@@ -133,3 +135,24 @@ a{
 	color: #6467ebcc;
 }
 
+span#nav-icons:hover{
+	color: black;
+   }
+
+#about{
+	text-align: center;
+	margin-bottom: 30px;
+	color: rgb(34, 65, 62);
+}
+
+.landing-box{
+	height: 140px;
+	display: flex;
+   align-items: center;
+
+}
+
+/* .landing-box-text{
+	position: absolute;
+	vertical-align: middle;
+} */
