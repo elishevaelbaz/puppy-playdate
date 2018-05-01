@@ -22,7 +22,6 @@ const SignupForm = (props) => {
       }
     };
 
-		// TODO - validate!
 		axios
 			.post('/auth/signup', formData, config)
 			.then(response => {
@@ -79,17 +78,13 @@ const SignupForm = (props) => {
 
 				
 			  
-  <input type="file" 
-		onChange={props.handleChange}
-		name="photo"/>
-
-
-
-  
+  			<input type="file" 
+				onChange={props.handleChange}
+				name="photo"/>
 
 			  <center><FormBtn
 
-				// if either username or passwors is not filled out
+				// if either username or passwords is not filled out
 			  // or if password and confirm password don't match
 				disabled={( !props.username || !props.password) || (props.password !== props.confirmPassword)}
 				onClick={handleSubmit}

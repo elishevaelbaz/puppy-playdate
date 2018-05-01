@@ -72,11 +72,9 @@ class SimpleCarousel extends React.Component {
         }
       })
 
-
-     
       // an array of just the usernames
       const usernames = filteredList.map(person => person.local.username);
-      console.log("usernames", usernames);
+
       // looping through these usernames
       usernames.forEach(username => {
         // if the username is included in the saidYesList of the current user,
@@ -92,9 +90,6 @@ class SimpleCarousel extends React.Component {
       })
 
       filteredList.forEach(person => {
-              
-        console.log("this.state.userLAt", this.state.userLat);
-        console.log("person.lat", person.lat);
         
             const dist = geodist({
               lat: parseInt(this.state.userLat),
@@ -103,21 +98,14 @@ class SimpleCarousel extends React.Component {
               lat: parseInt(person.lat),
               lon: parseInt(person.lng)
             })
-            console.log("dist", dist)
-            console.log("radius", this.state.radius);
             
             if(this.state.radius < dist){
          filteredList = filteredList.filter(user => user.local.username !== person.local.username)
             }
       })
    
-
-
-      console.log("user here", this.state.user);
       // sets the state of dogs to the new list of all the filters
-      this.setState({dogs: filteredList});
-      console.log("excluding", filteredList);
-    
+      this.setState({dogs: filteredList});  
     })
   }
   
@@ -205,13 +193,9 @@ class SimpleCarousel extends React.Component {
     const imageStyles = {
       width: IMG_WIDTH,
       height: IMG_HEIGHT,
-      // backgroundImage: `url(${IMAGES[imageIdx]})`
     };
     return (
       <div className="swipeContainer">
-
-
-        
 
         <div className="row" >
         {this.state.dogs.length ? (<Swipeable 
@@ -223,7 +207,6 @@ class SimpleCarousel extends React.Component {
           onSwipedRight={()=>this.onSwiped(RIGHT)}
         >
           
-
           <div className="hidden-xs col-sm-offset-1 col-sm-1" style={{ textAlign: "center" }} >
            
             <button
