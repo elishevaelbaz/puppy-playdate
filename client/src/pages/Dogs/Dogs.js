@@ -44,13 +44,10 @@ class Dogs extends Component {
   }
 
   loadUser = () => {
-    console.log("INSIDE THE loadUser FUNCTION !!!!!!!!!!!!!");
     // get the current user info and display on profile page
     axios.get('/auth/user')
       .then(res => {
-        console.log("just in side the .then -- res", res);
         const userInfo = res.data.user;
-        console.log("res.data.user", res.data.user);
         this.setState({ 
           user: userInfo.local.username,
           photo: userInfo.photo,
@@ -66,34 +63,26 @@ class Dogs extends Component {
           lng: userInfo.lng
 
         }) 
-        console.log("res.data", res.data);
         console.log("user here", this.state.user);
       })
       .catch(err => console.log(err));
   };
 
   placesChanged = (newPlaces) => {
-    console.log("newPlaces", newPlaces)
     this.setState({places: newPlaces});
   }
 
   handleInputChange = event => {
     const {name, value} = event.target;
 
-    // it's logging so why isn't vetDate storing to db
     if (name=="vetDate"){
-    console.log(value)
-    console.log(typeof value)
-}
+      console.log(value)
+      console.log(typeof value)
+    }
+
     this.setState({[name]: value});
 
-    // const placesArray = []
-    // if (event.target.name =="places"){
-    //   placesArray.push(event.target.value)
-    //   this.setState({places: placesArray})
-    // }
   };
-  // handleChange(date) {   this.setState({startDate: date}); }
 
   handleChangeStart = () => {
     console.log('Change event started')
@@ -101,7 +90,6 @@ class Dogs extends Component {
   
   handleChange = radius => {
     this.setState({radius: radius})
-    console.log(radius);
   };
   
   handleChangeComplete = () => {
@@ -121,9 +109,6 @@ class Dogs extends Component {
           console.log(latLng)
           const {lat, lng} = latLng;
           this.setState({lat, lng});
-          console.log('====>this is the state when submit is hit: ', this.state);
-          console.log("this.state.vetDate in the put req", this.state.vetDate)
-          console.log("this.state.places in the put req", this.state.places)
           axios //(need to add for photos)
             .put('/auth/signup', {
             username: this.state.user,
